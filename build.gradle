@@ -1,0 +1,32 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE'
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'spring-boot'
+
+def spockVersion = '1.0-groovy-2.4'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.5'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+
+    testCompile "org.spockframework:spock-core:$spockVersion", {
+        exclude module: 'groovy-all'
+	}
+    testCompile "org.spockframework:spock-spring:$spockVersion"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
+}
