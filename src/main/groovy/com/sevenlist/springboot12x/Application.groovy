@@ -1,5 +1,7 @@
 package com.sevenlist.springboot12x
 
+import com.sevenlist.springboot12x.repository.PersonRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.web.bind.annotation.RequestMapping
@@ -9,9 +11,12 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 public class Application {
 
+    @Autowired
+    PersonRepository personRepository
+
     @RequestMapping('/')
     String home() {
-        'Hello World!'
+        personRepository.findByFirstName('Seven').first()
     }
 
     static main(args) {
